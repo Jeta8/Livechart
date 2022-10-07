@@ -4,15 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          xmlns:local="clr-namespace:Livechart"
-          xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+                xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
         <lvc:CartesianChart
-        Series="{Binding Series}"
-         
-          ZoomMode="X">
+             Series="{Binding Series}"
+             AnimationsSpeed="00:00:00.500"
+             ZoomMode="X">
         </lvc:CartesianChart>
     </Grid>
+    
+    
 </Window>

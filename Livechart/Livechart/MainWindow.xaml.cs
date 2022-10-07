@@ -11,6 +11,10 @@ using LiveCharts;
 using System.Windows.Media.Animation;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
+using LiveCharts.Configurations;
+using LiveChartsCore.Geo;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Livechart
 {
@@ -18,86 +22,30 @@ namespace Livechart
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
+    public class PontosGrafico : INotifyPropertyChanged
+    {
+        public string label { get => _label; set { _label = value; OnPropertyChanged(); } }
+        private string _label = "";
+
+        public double X { get => _X; set { _X = value; OnPropertyChanged(); } }
+        private double _X;
+
+        public double Y { get => _Y; set { _Y = value; OnPropertyChanged(); } }
+        private double _Y;
+        public double PCritico { get => _PCritico; set { _PCritico = value; OnPropertyChanged(); } }
+        private double _PCritico;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
 
     public partial class MainWindow : Window
     {
-        public static ObservablePoint[] Lista;
-        public static ChartValues<ObservablePoint> List1Points = new ChartValues<ObservablePoint>(), List2Points = new ChartValues<ObservablePoint>();
-        public ISeries[] Series { get; set; } =
-        {
-        new LineSeries<ObservablePoint>
-        {
-            Values = List1Points,
-            Fill = null,
-            GeometryFill = null,
-            GeometryStroke = null
-        },
-         new LineSeries<ObservablePoint>
-        {
-            Values = List2Points,
-            Fill = null,
-            GeometryFill = null,
-            GeometryStroke = null
-        }
-        };
-
-
-
-
-        public MainWindow()
-        {
-            for (double x = 0; x < 10; x += 0.001)
-            {
-                var ponto = new ObservablePoint(x, RFormula(1, 6, x));
-
-                List1Points.Add(ponto);
-            }
-            for (double y = 0; y < 10; y += 0.001)
-            {
-                double valor = Constante(3, 2, 3 + y, 32, 0.5, 40);
-
-                var ponto2 = new ObservablePoint(y, valor);
-
-                List2Points.Add(ponto2);
-
-
-            }
-            double inter = 0;
-
-            for (int x = 0; x < List1Points.Count; x++)
-            {
-                double r = (List1Points[x].Y.Value - List2Points[x].Y.Value);
-
-                if (r < 0)
-                    r = -(r);
-
-                if (r < 0.01)
-                   inter = List2Points[x].X.Value;
-            }
-
-
-            InitializeComponent();
-            DataContext = this;
-        }
-
-
-
-        public static double Constante(double N1, double N2, double Vazao, double N4, double Recalque, double Succao)
-        {
-            double Resultado = N1 + N2 + Math.Pow(8.69, 6) * Math.Pow(Vazao * 3.6, 1.75) * Math.Pow(N4, -4.75) * Recalque + Math.Pow(8.69, 6) * Math.Pow(Vazao * 3.6, 1.75) * Math.Pow(Succao, -4.75);
-
-            return Resultado;
-            // N3 = vazão
-            // N5 = altura de recalque
-        }
-
-
-
-
-
-
-
-        public static double RFormula(int ID, int IDModelo, double VazaoProjeto = 0)
+        public double RFormula(int ID, int IDModelo, double VazaoProjeto = 0)
         {
             double Resultado = 0;
 
@@ -197,5 +145,108 @@ namespace Livechart
 
             return Math.Round(Resultado, 2);
         }
+
+        public static ObservablePoint[] Lista;
+        public static ChartValues<PontosGrafico> List1Points = new ChartValues<PontosGrafico>(), List2Points = new ChartValues<PontosGrafico>(), List3Points = new ChartValues<PontosGrafico>();
+        public ISeries[] Series { get; set; } =
+        {
+        new LineSeries<PontosGrafico>
+        {
+            Name = "teste",
+            Values = List1Points,
+            GeometryFill=null,
+            GeometryStroke=null,
+            Fill = null,
+            Mapping = (city, point) =>
+        {
+            point.PrimaryValue = city.Y;
+            point.SecondaryValue = city.X;
+        }
+
+        },
+         new LineSeries<PontosGrafico>
+        {
+            Fill = null,
+            GeometryFill=null,
+            GeometryStroke=null,
+            Values = List2Points,
+            TooltipLabelFormatter = point => $"{point.Model.label} {point.PrimaryValue:N2}",
+               Mapping = (city, point) =>
+        {
+            point.PrimaryValue = city.Y;
+            point.SecondaryValue = city.X;
+            point.TertiaryValue = city.PCritico;
+        }
+        },
+           new LineSeries<PontosGrafico>
+        {
+            Fill = null,
+            GeometrySize=10,
+            GeometryStroke=null,
+            Values = List3Points,
+               Mapping = (city, point) =>
+        {
+            point.PrimaryValue = city.Y;
+            point.SecondaryValue = city.X;
+        }
+        }
+
+       };
+
+
+
+        public MainWindow()
+        {
+            for (double x = 0; x < 10; x += 0.001)
+            {
+                var ponto = new PontosGrafico() { X = x, Y = RFormula(1, 6, x), label = "" };
+
+                List1Points.Add(ponto);
+            }
+            for (double y = 0; y < 10; y += 0.001)
+            {
+                double valor = Constante(3, 2, 3 + y, 32, 0.5, 40);
+
+                var ponto2 = new PontosGrafico() { X = y, Y = valor, label = "" };
+
+                List2Points.Add(ponto2);
+            }
+
+            double inter = 0;
+
+            for (int x = 0; x < List1Points.Count; x++)
+            {
+                double r = (List1Points[x].Y - List2Points[x].Y);
+
+                if (r < 0)
+                    r = -(r);
+
+                if (r < 0.01)
+                {
+                    inter = List2Points[x].X;
+                    List2Points[x].PCritico = inter;
+
+
+                    List3Points.Add(List2Points[x]);
+                    List3Points.First().X = inter;
+                }
+            }
+
+
+            InitializeComponent();
+            DataContext = this;
+        }
+
+
+
+        public static double Constante(double N1, double N2, double Vazao, double N4, double Recalque, double Succao)
+        {
+            double Resultado = N1 + N2 + Math.Pow(8.69, 6) * Math.Pow(Vazao * 3.6, 1.75) * Math.Pow(N4, -4.75) * Recalque + Math.Pow(8.69, 6) * Math.Pow(Vazao * 3.6, 1.75) * Math.Pow(Succao, -4.75);
+
+            return Resultado;
+
+        }
+
+
     }
 }
