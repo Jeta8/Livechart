@@ -15,6 +15,9 @@ using LiveCharts.Configurations;
 using LiveChartsCore.Geo;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using LiveChartsCore.Kernel.Sketches;
+
+
 
 namespace Livechart
 {
@@ -34,12 +37,15 @@ namespace Livechart
         private double _Y;
         public double PCritico { get => _PCritico; set { _PCritico = value; OnPropertyChanged(); } }
         private double _PCritico;
+        public double PontoVazao { get => _PontoVazao; set { _PontoVazao = value; OnPropertyChanged(); } }
+        private double _PontoVazao;
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 
 
@@ -143,34 +149,39 @@ namespace Livechart
                     break;
             }
 
-            return Math.Round(Resultado, 2);
+            return Resultado > 0 ? Math.Round(Resultado, 2) : 0;
         }
 
+
         public static ObservablePoint[] Lista;
-        public static ChartValues<PontosGrafico> List1Points = new ChartValues<PontosGrafico>(), List2Points = new ChartValues<PontosGrafico>(), List3Points = new ChartValues<PontosGrafico>();
+        public static ChartValues<PontosGrafico> List1Points = new ChartValues<PontosGrafico>(), List2Points = new ChartValues<PontosGrafico>(), List3Points = new ChartValues<PontosGrafico>(), PontoDeVazao = new ChartValues<PontosGrafico>();
         public ISeries[] Series { get; set; } =
         {
+
         new LineSeries<PontosGrafico>
         {
-            Name = "teste",
+            Name = "Bomba",
             Values = List1Points,
             GeometryFill=null,
             GeometryStroke=null,
             Fill = null,
+            ScalesYAt = 0,
+            Stroke= new SolidColorPaint(new SKColor(0,0,139),4),
             Mapping = (city, point) =>
         {
             point.PrimaryValue = city.Y;
             point.SecondaryValue = city.X;
         }
-
         },
          new LineSeries<PontosGrafico>
         {
+            Name = "Sistema",
             Fill = null,
             GeometryFill=null,
             GeometryStroke=null,
+            ScalesYAt= 0,
+            Stroke= new SolidColorPaint(new SKColor(230, 129, 0),4),
             Values = List2Points,
-            TooltipLabelFormatter = point => $"{point.Model.label} {point.PrimaryValue:N2}",
                Mapping = (city, point) =>
         {
             point.PrimaryValue = city.Y;
@@ -179,29 +190,70 @@ namespace Livechart
         }
         },
            new LineSeries<PontosGrafico>
-        {
+        {   Name = "Ponto de Interseção",
             Fill = null,
             GeometrySize=10,
-            GeometryStroke=null,
+            GeometryStroke=new SolidColorPaint(new SKColor(0,0,0),3),
             Values = List3Points,
+
                Mapping = (city, point) =>
         {
             point.PrimaryValue = city.Y;
             point.SecondaryValue = city.X;
         }
+        },
+             new LineSeries<PontosGrafico>
+        {
+            Name = "Vazão Projeto",
+            Fill = null,
+            GeometrySize=10,
+            GeometryStroke=new SolidColorPaint(new SKColor(230, 129, 0),3),
+            Values = PontoDeVazao,
+               Mapping = (city, point) =>
+        {
+            point.PrimaryValue = city.Y;
+            point.SecondaryValue = city.X;
         }
+        },
+        };
+        public ICartesianAxis[] YAxes { get; set; } =
+        {
+                new Axis
+        {
+            Name = "Altura Manométrica",
+            NameTextSize = 14,
+            NamePaint = new SolidColorPaint(new SKColor(0,0,0)),
+            TextSize = 12,
+            ShowSeparatorLines = true,
+            Position= 0
 
+        },
        };
+        public ICartesianAxis[] XAxes { get; set; } =
+  {
+               new Axis
+        {
+            Name = "Vazão (m³/h)",
+            NameTextSize = 14,
+            NamePaint = new SolidColorPaint(new SKColor(0,0,0)),
+            TextSize = 12,
+            ShowSeparatorLines = true,
 
+        }
+    };
 
 
         public MainWindow()
         {
+            var ponto3 = new PontosGrafico() { X = 2, Y = Constante(3, 2, 3 + 2, 32, 0.5, 40), label = "" };
+            PontoDeVazao.Add(ponto3);
+
+
             for (double x = 0; x < 10; x += 0.001)
             {
                 var ponto = new PontosGrafico() { X = x, Y = RFormula(1, 6, x), label = "" };
-
-                List1Points.Add(ponto);
+                if (ponto.Y > 0)
+                    List1Points.Add(ponto);
             }
             for (double y = 0; y < 10; y += 0.001)
             {
@@ -225,10 +277,16 @@ namespace Livechart
                 {
                     inter = List2Points[x].X;
                     List2Points[x].PCritico = inter;
+                        List3Points.Add(List2Points[x]);
+                        List3Points.First().X = inter;
+                    for (int z = x - 3000; z < x; z++)
+                    {
+                        List1Points.RemoveAt(z);
+                        List2Points.RemoveAt(z);
 
+                    }
+                    break;
 
-                    List3Points.Add(List2Points[x]);
-                    List3Points.First().X = inter;
                 }
             }
 
@@ -243,7 +301,7 @@ namespace Livechart
         {
             double Resultado = N1 + N2 + Math.Pow(8.69, 6) * Math.Pow(Vazao * 3.6, 1.75) * Math.Pow(N4, -4.75) * Recalque + Math.Pow(8.69, 6) * Math.Pow(Vazao * 3.6, 1.75) * Math.Pow(Succao, -4.75);
 
-            return Resultado;
+            return Math.Round(Resultado, 2);
 
         }
 

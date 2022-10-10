@@ -38,6 +38,11 @@ C:\Users\PC 01\source\repos\Livechart\Livechart\obj\Debug\net6.0-windows\refint\
 C:\Users\PC 01\source\repos\Livechart\Livechart\obj\Debug\net6.0-windows\Livechart.pdb
 C:\Users\PC 01\source\repos\Livechart\Livechart\obj\Debug\net6.0-windows\Livechart.genruntimeconfig.cache
 C:\Users\PC 01\source\repos\Livechart\Livechart\obj\Debug\net6.0-windows\ref\Livechart.dll
+C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\Livechart.csproj.AssemblyReference.cache
+C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\Livechart_MarkupCompile.cache
+C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\Livechart_MarkupCompile.lref
 C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\bin\Debug\net6.0-windows\Livechart.exe
 C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\bin\Debug\net6.0-windows\Livechart.deps.json
 C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\bin\Debug\net6.0-windows\Livechart.runtimeconfig.json
@@ -61,11 +66,6 @@ C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\bin\Debug\net6.0-w
 C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\bin\Debug\net6.0-windows\runtimes\win-arm64\native\libSkiaSharp.dll
 C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\bin\Debug\net6.0-windows\runtimes\win-x64\native\libSkiaSharp.dll
 C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\bin\Debug\net6.0-windows\runtimes\win-x86\native\libSkiaSharp.dll
-C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\Livechart.csproj.AssemblyReference.cache
-C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\MainWindow.g.cs
-C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\App.g.cs
-C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\Livechart_MarkupCompile.cache
-C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\Livechart_MarkupCompile.lref
 C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\MainWindow.baml
 C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\Livechart.g.resources
 C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\obj\Debug\net6.0-windows\Livechart.GeneratedMSBuildEditorConfig.editorconfig

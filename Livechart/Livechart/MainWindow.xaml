@@ -12,7 +12,13 @@
         <lvc:CartesianChart
              Series="{Binding Series}"
              AnimationsSpeed="00:00:00.500"
-             ZoomMode="X">
+             YAxes="{Binding YAxes}"
+             LegendFontFamily="Courier New"
+             LegendFontSize="10"
+             LegendTextBrush="#505050"
+             XAxes="{Binding XAxes}"
+             LegendPosition="Bottom">
+
         </lvc:CartesianChart>
     </Grid>
     
