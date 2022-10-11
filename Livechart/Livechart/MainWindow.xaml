@@ -6,21 +6,44 @@
          xmlns:local="clr-namespace:Livechart"
                 xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Gráfico" Height="450" Width="800"
+        x:Name="WindowBombas">
 
     <Grid>
+        <Grid>
+            <ItemsControl ItemsSource="{Binding bombas}">
+                <ItemsControl.ItemTemplate >
+                    <DataTemplate>
+                          <ListView VerticalAlignment="Center" HorizontalAlignment="Left" Width="228" Height="96" >
+             
+                        <TextBlock Text="{Binding Modelo}"/>
+                        <TextBlock Text="Potência"/>
+                        <TextBlock Text="{Binding Potencia}"/>
+                                
+                      </ListView>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+
         <lvc:CartesianChart
              Series="{Binding Series}"
              AnimationsSpeed="00:00:00.500"
              YAxes="{Binding YAxes}"
-             LegendFontFamily="Courier New"
+             LegendFontFamily="Lato"
              LegendFontSize="10"
              LegendTextBrush="#505050"
              XAxes="{Binding XAxes}"
-             LegendPosition="Bottom">
+             TooltipFontFamily="Lato"
+             FontFamily="Lato"
+             
+             LegendPosition="Bottom"
+             
+             />
 
-        </lvc:CartesianChart>
+
     </Grid>
-    
-    
+
+
+
 </Window>

@@ -16,8 +16,9 @@ using LiveChartsCore.Geo;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using LiveChartsCore.Kernel.Sketches;
-
-
+using System.Collections.ObjectModel;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Media.Imaging;
 
 namespace Livechart
 {
@@ -48,10 +49,12 @@ namespace Livechart
 
     }
 
+    
 
     public partial class MainWindow : Window
     {
-        public double RFormula(int ID, int IDModelo, double VazaoProjeto = 0)
+
+        public static double RFormula(int ID, int IDModelo, double VazaoProjeto = 0)
         {
             double Resultado = 0;
 
@@ -195,7 +198,6 @@ namespace Livechart
             GeometrySize=10,
             GeometryStroke=new SolidColorPaint(new SKColor(0,0,0),3),
             Values = List3Points,
-
                Mapping = (city, point) =>
         {
             point.PrimaryValue = city.Y;
@@ -207,7 +209,7 @@ namespace Livechart
             Name = "Vazão Projeto",
             Fill = null,
             GeometrySize=10,
-            GeometryStroke=new SolidColorPaint(new SKColor(230, 129, 0),3),
+            GeometryStroke=new SolidColorPaint(new SKColor(0, 0, 0),3),
             Values = PontoDeVazao,
                Mapping = (city, point) =>
         {
@@ -242,9 +244,66 @@ namespace Livechart
         }
     };
 
+        public class ModeloBombas : INotifyPropertyChanged
+        {
+            public int ID;
+            public int IDModelo;
+            public string modelo;
+            public string potencia;
+            public BitmapImage Imagem;
+            public double Formula { get => RFormula(ID, IDModelo); }
+            public double vazaoTrabalho;
+            public event PropertyChangedEventHandler PropertyChanged;
 
+            public double VazaoTrabalho
+            {
+                get => vazaoTrabalho;
+                set
+                {
+                    if (vazaoTrabalho != value)
+                    {
+                        vazaoTrabalho = value;
+                        NotifyPropertyChanged();
+                    }
+                }
+            }
+            public string Potencia
+            {
+                get => potencia;
+                set
+                {
+                    if (potencia != value)
+                    {
+                        potencia = value;
+                        NotifyPropertyChanged();
+                    }
+                }
+            }
+            public string Modelo
+            {
+                get => modelo;
+                set
+                {
+                    if (modelo != value)
+                    {
+                        modelo = value;
+                        NotifyPropertyChanged();
+                    }
+                }
+            }
+            public void NotifyPropertyChanged([CallerMemberName] string propName = null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+            }
+        }
+
+        public ObservableCollection<ModeloBombas> bombas { get; set; }
         public MainWindow()
         {
+            
+
+           
+
             var ponto3 = new PontosGrafico() { X = 2, Y = Constante(3, 2, 3 + 2, 32, 0.5, 40), label = "" };
             PontoDeVazao.Add(ponto3);
 
@@ -277,14 +336,8 @@ namespace Livechart
                 {
                     inter = List2Points[x].X;
                     List2Points[x].PCritico = inter;
-                        List3Points.Add(List2Points[x]);
-                        List3Points.First().X = inter;
-                    for (int z = x - 3000; z < x; z++)
-                    {
-                        List1Points.RemoveAt(z);
-                        List2Points.RemoveAt(z);
-
-                    }
+                    List3Points.Add(List2Points[x]);
+                    List3Points.First().X = inter;
                     break;
 
                 }
@@ -293,6 +346,10 @@ namespace Livechart
 
             InitializeComponent();
             DataContext = this;
+            bombas = new ObservableCollection<ModeloBombas>();
+            bombas.Add(new ModeloBombas { ID = 1, IDModelo = 6, Modelo = "BC91", Potencia = "1cv", Imagem = new BitmapImage(new Uri(@"/Resources/BC91_imagem.bmp", UriKind.RelativeOrAbsolute)), VazaoTrabalho = 0 });
+            bombas.Add(new ModeloBombas { ID = 2, IDModelo = 2, Modelo = "BC92", Potencia = "1cv", Imagem = new BitmapImage(new Uri(@"/Resources/BC92_imagem.bmp", UriKind.RelativeOrAbsolute)), VazaoTrabalho = 0 });
+
         }
 
 
