@@ -6,27 +6,98 @@
          xmlns:local="clr-namespace:Livechart"
                 xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         mc:Ignorable="d"
-        Title="Gráfico" Height="450" Width="800"
+        Title="Gráfico" Height="538" Width="600"
         x:Name="WindowBombas">
 
+ <Window.Resources>
+
+        <ResourceDictionary>
+
+            <Style TargetType="Button" x:Key="RoundButton">
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10" />
+                        <Setter Property="Background" Value="Orange" />
+                    </Style>
+                </Style.Resources>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="Border"
+                                 Background="#079feb"                              
+                                 SnapsToDevicePixels="True"
+                                 CornerRadius="10"
+                                 BorderBrush="#FFFFFF"
+                                 BorderThickness="0.2">
+                                <ContentPresenter Name="Presenter" Margin="{TemplateBinding Padding}"
+                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     RecognizesAccessKey="True"
+                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                               
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger  Property="Cursor" Value="Hand" SourceName="Border">
+                                    <Setter TargetName="Border" Property="Opacity" Value="1"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Content" Value="{Binding Categoria}"/>
+                                    <Setter TargetName="Border" Property="Background" Value="#027feb"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#004feb"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False" SourceName="Border">
+                                    <Setter TargetName="Border" Property="Background" Value="#027feb"/>
+                                    <Setter TargetName="Border" Property="Opacity" Value="0.15"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
     <Grid>
-        <Grid>
-            <ItemsControl ItemsSource="{Binding bombas}">
+
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="GridBotao">
+            <Button Background="Red" Width="100" Height="50" Click="Exibir_Click">Clique</Button>
+        </Grid>
+        
+        <Grid x:Name="GridBombas" Width="500" HorizontalAlignment="Left" Background="#333" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="41*"/>
+                <RowDefinition Height="393*"/>
+            </Grid.RowDefinitions>
+            <ItemsControl ItemsSource="{Binding bombas}" Grid.RowSpan="3">
                 <ItemsControl.ItemTemplate >
                     <DataTemplate>
-                          <ListView VerticalAlignment="Center" HorizontalAlignment="Left" Width="228" Height="96" >
-             
-                        <TextBlock Text="{Binding Modelo}"/>
-                        <TextBlock Text="Potência"/>
-                        <TextBlock Text="{Binding Potencia}"/>
-                                
-                      </ListView>
+                        <ListView Margin="25,100,0,-99" BorderThickness="1.5" BorderBrush="#111" Background="#f6f6f6" VerticalAlignment="Center" HorizontalAlignment="Left" Width="460" Height="100" FontFamily="Lato" MouseMove="ListView_MouseMove">
+                        <Grid Height="100" Width="330" Margin="5,0"  >
+                            <Image Source="{Binding Imagem}"  Width="100" Height="80" HorizontalAlignment="Left"/>
+                            <TextBlock Text="{Binding Modelo}" HorizontalAlignment="Center" Margin="0,12,0,0" FontSize="14" FontWeight="SemiBold" Foreground="DarkBlue"/>
+                                <TextBlock Text="Potência:" HorizontalAlignment="Center" Margin="0,35,55,0" FontWeight="SemiBold" Foreground="#333"/>
+                                <TextBlock Text="{Binding Potencia}" HorizontalAlignment="Center" Margin="0,35,-15,0" FontWeight="SemiBold" Foreground="#333"/>
+                                <TextBlock Text="Vazão de Trabalho:" HorizontalAlignment="Center" Margin="0,53,1,0" FontWeight="SemiBold" Foreground="#333"/>
+                                <TextBlock Text="{Binding VazaoTrabalho}" HorizontalAlignment="Center" Margin="0,53,-115,0" FontWeight="SemiBold" Foreground="#333"/>
+                                <Button x:Name="btnSelecionarBomba" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,3,-90,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="23" Width="150" Click="btnSelecionarBomba_Click">Selecionar este Modelo</Button>
+                                <Button x:Name="btnManual" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,-3,-90,5" HorizontalAlignment="Right" VerticalAlignment="Center" Height="23" Width="150">Manual</Button>
+                                <Button x:Name="btnCurvaVazao" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,0,-90,12" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="23" Width="150" Click="btnCurvaVazao_Click">Curva de Vazão</Button>
+                            </Grid>
+                        </ListView>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Grid>
-
-        <lvc:CartesianChart
+        <Grid  x:Name="GridCurva"  Margin="0,39,20,39" Width="750" HorizontalAlignment="Right" Visibility="Hidden" >
+            <lvc:CartesianChart
              Series="{Binding Series}"
              AnimationsSpeed="00:00:00.500"
              YAxes="{Binding YAxes}"
@@ -37,10 +108,10 @@
              TooltipFontFamily="Lato"
              FontFamily="Lato"
              
-             LegendPosition="Bottom"
+             LegendPosition="Bottom" Margin="174,36,0,36" Grid.ColumnSpan="2"
              
              />
-
+        </Grid>
 
     </Grid>
 

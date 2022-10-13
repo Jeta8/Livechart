@@ -19,6 +19,7 @@ using LiveChartsCore.Kernel.Sketches;
 using System.Collections.ObjectModel;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media.Imaging;
+using System.Windows.Controls;
 
 namespace Livechart
 {
@@ -49,11 +50,10 @@ namespace Livechart
 
     }
 
-    
+
 
     public partial class MainWindow : Window
     {
-
         public static double RFormula(int ID, int IDModelo, double VazaoProjeto = 0)
         {
             double Resultado = 0;
@@ -155,6 +155,7 @@ namespace Livechart
             return Resultado > 0 ? Math.Round(Resultado, 2) : 0;
         }
 
+        public ModeloBombas BombaSelecionada;
 
         public static ObservablePoint[] Lista;
         public static ChartValues<PontosGrafico> List1Points = new ChartValues<PontosGrafico>(), List2Points = new ChartValues<PontosGrafico>(), List3Points = new ChartValues<PontosGrafico>(), PontoDeVazao = new ChartValues<PontosGrafico>();
@@ -244,17 +245,79 @@ namespace Livechart
         }
     };
 
+        public void FuncaoCalculoCurvaGrafico(int IDBomba, int ModeloBomba)
+        {
+            PontoDeVazao.Clear();
+            List1Points.Clear();
+            List2Points.Clear();
+            List3Points.Clear();
+
+
+            var ponto3 = new PontosGrafico() { X = 2, Y = Constante(3, 2, 3 + 2, 32, 0.5, 40), label = "" };
+            PontoDeVazao.Add(ponto3);
+
+
+            for (double x = 0; x < 10; x += 0.001)
+            {
+                var ponto = new PontosGrafico() { X = x, Y = RFormula(IDBomba, ModeloBomba, x), label = "" };
+                if (ponto.Y > 0)
+                    List1Points.Add(ponto);
+            }
+            for (double y = 0; y < 10; y += 0.001)
+            {
+                double valor = Constante(3, 2, 3 + y, 32, 0.5, 40);
+
+                var ponto2 = new PontosGrafico() { X = y, Y = valor, label = "" };
+
+                List2Points.Add(ponto2);
+            }
+
+            double inter = 0;
+
+            for (int x = 0; x < List1Points.Count; x++)
+            {
+                double r = (List1Points[x].Y - List2Points[x].Y);
+
+                if (r < 0)
+                    r = -(r);
+
+                if (r < 0.01)
+                {
+                    inter = List2Points[x].X;
+                    List2Points[x].PCritico = inter;
+                    List3Points.Add(List2Points[x]);
+                    List3Points.First().X = inter;
+                    break;
+
+                }
+            }
+        }
+
         public class ModeloBombas : INotifyPropertyChanged
         {
             public int ID;
             public int IDModelo;
             public string modelo;
             public string potencia;
-            public BitmapImage Imagem;
+            public BitmapImage imagem;
             public double Formula { get => RFormula(ID, IDModelo); }
             public double vazaoTrabalho;
             public event PropertyChangedEventHandler PropertyChanged;
 
+
+
+            public BitmapImage Imagem
+            {
+                get => imagem;
+                set
+                {
+                    if (imagem != value)
+                    {
+                        imagem = value;
+                        NotifyPropertyChanged();
+                    }
+                }
+            }
             public double VazaoTrabalho
             {
                 get => vazaoTrabalho;
@@ -297,59 +360,53 @@ namespace Livechart
             }
         }
 
+        private void btnCurvaVazao_Click(object sender, RoutedEventArgs e)
+        {
+            if (BombaSelecionada != null)
+            {
+                try
+                {
+                    FuncaoCalculoCurvaGrafico(BombaSelecionada.ID, BombaSelecionada.IDModelo);
+                    this.Width = 1120;
+                    GridCurva.Visibility = Visibility.Visible;
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
+
+        private void ListView_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (sender != null)
+            {
+                dynamic context = sender;
+                BombaSelecionada = context.DataContext;
+            }
+        }
+
+        private void Exibir_Click(object sender, RoutedEventArgs e)
+        {
+            GridBotao.Visibility = Visibility.Hidden;
+            GridBombas.Visibility = Visibility.Visible;
+        }
+
+        private void btnSelecionarBomba_Click(object sender, RoutedEventArgs e)
+        {
+            this.Width = 600;
+            GridCurva.Visibility = Visibility.Hidden;
+            GridBotao.Visibility = Visibility.Visible;
+            GridBombas.Visibility = Visibility.Hidden;
+        }
+
         public ObservableCollection<ModeloBombas> bombas { get; set; }
         public MainWindow()
         {
-            
-
-           
-
-            var ponto3 = new PontosGrafico() { X = 2, Y = Constante(3, 2, 3 + 2, 32, 0.5, 40), label = "" };
-            PontoDeVazao.Add(ponto3);
-
-
-            for (double x = 0; x < 10; x += 0.001)
-            {
-                var ponto = new PontosGrafico() { X = x, Y = RFormula(1, 6, x), label = "" };
-                if (ponto.Y > 0)
-                    List1Points.Add(ponto);
-            }
-            for (double y = 0; y < 10; y += 0.001)
-            {
-                double valor = Constante(3, 2, 3 + y, 32, 0.5, 40);
-
-                var ponto2 = new PontosGrafico() { X = y, Y = valor, label = "" };
-
-                List2Points.Add(ponto2);
-            }
-
-            double inter = 0;
-
-            for (int x = 0; x < List1Points.Count; x++)
-            {
-                double r = (List1Points[x].Y - List2Points[x].Y);
-
-                if (r < 0)
-                    r = -(r);
-
-                if (r < 0.01)
-                {
-                    inter = List2Points[x].X;
-                    List2Points[x].PCritico = inter;
-                    List3Points.Add(List2Points[x]);
-                    List3Points.First().X = inter;
-                    break;
-
-                }
-            }
-
-
             InitializeComponent();
             DataContext = this;
             bombas = new ObservableCollection<ModeloBombas>();
-            bombas.Add(new ModeloBombas { ID = 1, IDModelo = 6, Modelo = "BC91", Potencia = "1cv", Imagem = new BitmapImage(new Uri(@"/Resources/BC91_imagem.bmp", UriKind.RelativeOrAbsolute)), VazaoTrabalho = 0 });
-            bombas.Add(new ModeloBombas { ID = 2, IDModelo = 2, Modelo = "BC92", Potencia = "1cv", Imagem = new BitmapImage(new Uri(@"/Resources/BC92_imagem.bmp", UriKind.RelativeOrAbsolute)), VazaoTrabalho = 0 });
-
+            bombas.Add(new ModeloBombas { ID = 1, IDModelo = 6, Modelo = "Schneider BC-91", Potencia = "1cv", Imagem = new BitmapImage(new Uri(@"C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\Resources\BC91_imagem.bmp", UriKind.RelativeOrAbsolute)), VazaoTrabalho = 0 });
+            bombas.Add(new ModeloBombas { ID = 2, IDModelo = 2, Modelo = "Schneider BC-92", Potencia = "1cv", Imagem = new BitmapImage(new Uri(@"C:\Users\PC 01\Documents\GitHub\Livechart\Livechart\Livechart\Resources\BC92_imagem.bmp", UriKind.RelativeOrAbsolute)), VazaoTrabalho = 0 });
         }
 
 
