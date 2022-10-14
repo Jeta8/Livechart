@@ -27,31 +27,55 @@ namespace Livechart
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
-    public class PontosGrafico : INotifyPropertyChanged
+    public sealed class Bombas
     {
-        public string label { get => _label; set { _label = value; OnPropertyChanged(); } }
-        private string _label = "";
-
-        public double X { get => _X; set { _X = value; OnPropertyChanged(); } }
-        private double _X;
-
-        public double Y { get => _Y; set { _Y = value; OnPropertyChanged(); } }
-        private double _Y;
-        public double PCritico { get => _PCritico; set { _PCritico = value; OnPropertyChanged(); } }
-        private double _PCritico;
-        public double PontoVazao { get => _PontoVazao; set { _PontoVazao = value; OnPropertyChanged(); } }
-        private double _PontoVazao;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private static readonly Bombas _instance = new Bombas();
+        public static Bombas GetInstance
         {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get
+            {
+                return _instance;
+            }
         }
+        IList<cBombas> BombasDisponiveis = new List<cBombas>();
+        private Bombas()
+        {
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-91.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-91.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 3, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-91.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 4, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-91.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 5, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-91.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 6, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-91.bmp", UriKind.Absolute)) } });
 
-    }
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 3, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 4, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 5, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 6, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 7, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 8, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 9, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 10, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 11, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 12, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 13, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 14, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 15, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 16, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 17, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 18, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
 
-    public partial class MainWindow : Window
-    {
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-98", ID = 3, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-98.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-98", ID = 3, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-98.bmp", UriKind.Absolute)) } });
+          
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4,Submersivel = true, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4, Submersivel = true, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4, Submersivel = true, IDModelo = 3, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4, Submersivel = true, IDModelo = 4, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
+
+
+        }
         public static double RFormula(int ID, int IDModelo, double VazaoProjeto = 0)
         {
             double Resultado = 0;
@@ -133,7 +157,7 @@ namespace Livechart
                 case 5: // Schneider Brava
                     if (IDModelo == 1) // 1/3CV 
                         Resultado = -0.0014 * Math.Pow(VazaoProjeto, 3) - 0.0008 * Math.Pow(VazaoProjeto, 2) - 0.4501 * VazaoProjeto + 11.038;
-                    else if (IDModelo == 2) // 1/5CV 
+                    else if (IDModelo == 2) // 1/2CV 
                         Resultado = -0.0373 * Math.Pow(VazaoProjeto, 2) - 0.3012 * VazaoProjeto + 15.072;
                     else if (IDModelo == 3) // 1CV
                         Resultado = -0.0033 * Math.Pow(VazaoProjeto, 2) + 0.0455 * Math.Pow(VazaoProjeto, 2) - 0.805 * VazaoProjeto + 18.077;
@@ -359,8 +383,61 @@ namespace Livechart
             return Resultado > 0 ? Math.Round(Resultado, 2) : 0;
         }
 
-        public ModeloBombas BombaSelecionada;
+        public class ModelosBombas
+        {
+            public int ID { get => _ID; set { _ID = value; } }
+            private int _ID;
 
+            public int IDModelo { get => _IDModelo; set { _IDModelo = value; } }
+            private int _IDModelo;
+
+            public double VazaoTrabalho { get => _VazaoTrabalho; set { _VazaoTrabalho = value; } }
+            private double _VazaoTrabalho;
+
+            public double Potencia { get => RFormula(ID, IDModelo); }
+
+            public string Modelo { get => _Modelo; set { _Modelo = value; } }
+            private string _Modelo;
+
+            public BitmapImage ImagemBomba { get => _ImagemBomba; set { _ImagemBomba = value; } }
+            private BitmapImage _ImagemBomba;
+
+            public bool Submersivel { get; set; }
+        }
+        public class cBombas
+        {
+            public string NomeMarca { get => _NomeMarca; set { _NomeMarca = value; } }
+            private string _NomeMarca;
+
+            public ModelosBombas Bomba;
+        }
+    }
+
+    public class PontosGrafico : INotifyPropertyChanged
+    {
+        public string label { get => _label; set { _label = value; OnPropertyChanged(); } }
+        private string _label = "";
+
+        public double X { get => _X; set { _X = value; OnPropertyChanged(); } }
+        private double _X;
+
+        public double Y { get => _Y; set { _Y = value; OnPropertyChanged(); } }
+        private double _Y;
+        public double PCritico { get => _PCritico; set { _PCritico = value; OnPropertyChanged(); } }
+        private double _PCritico;
+        public double PontoVazao { get => _PontoVazao; set { _PontoVazao = value; OnPropertyChanged(); } }
+        private double _PontoVazao;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+    }
+
+    public partial class MainWindow : Window
+    {
         public static ObservablePoint[] Lista;
         public static ChartValues<PontosGrafico> PontosX = new ChartValues<PontosGrafico>(), PontosY = new ChartValues<PontosGrafico>(), PontoInter = new ChartValues<PontosGrafico>(), PontoDeVazao = new ChartValues<PontosGrafico>();
         public ISeries[] Series { get; set; } =
@@ -487,70 +564,7 @@ namespace Livechart
                 }
             }
         }
-        public class ModeloBombas : INotifyPropertyChanged
-        {
-            public int ID;
-            public int IDModelo;
-            public string modelo;
-            public string potencia;
-            public BitmapImage imagem;
-            public double Formula { get => RFormula(ID, IDModelo); }
-            public double vazaoTrabalho;
-            public event PropertyChangedEventHandler PropertyChanged;
-
-            public BitmapImage Imagem
-            {
-                get => imagem;
-                set
-                {
-                    if (imagem != value)
-                    {
-                        imagem = value;
-                        NotifyPropertyChanged();
-                    }
-                }
-            }
-            public double VazaoTrabalho
-            {
-                get => vazaoTrabalho;
-                set
-                {
-                    if (vazaoTrabalho != value)
-                    {
-                        vazaoTrabalho = value;
-                        NotifyPropertyChanged();
-                    }
-                }
-            }
-            public string Potencia
-            {
-                get => potencia;
-                set
-                {
-                    if (potencia != value)
-                    {
-                        potencia = value;
-                        NotifyPropertyChanged();
-                    }
-                }
-            }
-            public string Modelo
-            {
-                get => modelo;
-                set
-                {
-                    if (modelo != value)
-                    {
-                        modelo = value;
-                        NotifyPropertyChanged();
-                    }
-                }
-            }
-            public void NotifyPropertyChanged([CallerMemberName] string propName = null)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-            }
-        }
+       
 
         private void btnCurvaVazao_Click(object sender, RoutedEventArgs e)
         {
