@@ -73,17 +73,17 @@ namespace Livechart
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-98", ID = 3, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-98.bmp", UriKind.Absolute)) } });
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-98", ID = 3, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-98.bmp", UriKind.Absolute)) } });
           
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4,Submersivel = true, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
+            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4, Submersivel = true, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4, Submersivel = true, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4, Submersivel = true, IDModelo = 3, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4, Submersivel = true, IDModelo = 4, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
 
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BRAVA", ID = 5, Submersivel = true, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BRAVA.bmp", UriKind.Absolute)) } });
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BRAVA", ID = 5, Submersivel = true, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BRAVA.bmp", UriKind.Absolute)) } });
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BRAVA", ID = 5, Submersivel = true, IDModelo = 3, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BRAVA.bmp", UriKind.Absolute)) } });
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BRAVA", ID = 5, Submersivel = true, IDModelo = 4, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BRAVA.bmp", UriKind.Absolute)) } });
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BRAVA", ID = 5, Submersivel = true, IDModelo = 5, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BRAVA.bmp", UriKind.Absolute)) } });
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BRAVA", ID = 5, Submersivel = true, IDModelo = 6, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BRAVA.bmp", UriKind.Absolute)) } });
+            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "Brava", ID = 5, Submersivel = true, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/Brava.bmp", UriKind.Absolute)) } });
+            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "Brava", ID = 5, Submersivel = true, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/Brava.bmp", UriKind.Absolute)) } });
+            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "Brava", ID = 5, Submersivel = true, IDModelo = 3, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/Brava.bmp", UriKind.Absolute)) } });
+            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "Brava", ID = 5, Submersivel = true, IDModelo = 4, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/Brava.bmp", UriKind.Absolute)) } });
+            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "Brava", ID = 5, Submersivel = true, IDModelo = 5, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/Brava.bmp", UriKind.Absolute)) } });
+            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "Brava", ID = 5, Submersivel = true, IDModelo = 6, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/Brava.bmp", UriKind.Absolute)) } });
 
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Ebara", Bomba = new ModelosBombas { Modelo = "B-10", ID = 6, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/B-10.bmp", UriKind.Absolute)) } });
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Ebara", Bomba = new ModelosBombas { Modelo = "B-10", ID = 6, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/B-10.bmp", UriKind.Absolute)) } });
@@ -730,7 +730,7 @@ namespace Livechart
             ListaDeBombas.DataContext = instance;
             ListaDeBombas.ItemsSource = instance.BombasDisponiveis;
       
-                  }
+        }
 
         public static double Constante(double N1, double N2, double Vazao, double N4, double Recalque, double Succao)
         {
