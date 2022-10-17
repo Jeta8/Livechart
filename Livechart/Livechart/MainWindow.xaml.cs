@@ -28,7 +28,7 @@ namespace Livechart
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
-    public sealed class Bombas
+    public class Bombas
     {
         private static readonly Bombas _instance = new Bombas();
         public static Bombas GetInstance
@@ -38,7 +38,7 @@ namespace Livechart
                 return _instance;
             }
         }
-        public IList<cBombas> BombasDisponiveis = new List<cBombas>();
+        public ObservableCollection<cBombas> BombasDisponiveis = new ObservableCollection<cBombas>();
         private Bombas()
         {
             BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider" });
@@ -511,15 +511,15 @@ namespace Livechart
 
             public bool Submersivel { get; set; }
         }
-        public class cBombas : INotifyPropertyChanged
+        public class cBombas: INotifyPropertyChanged
         {
             public string NomeMarca { get => _NomeMarca; set { _NomeMarca = value; } }
             private string _NomeMarca;
 
-            public List<ModelosBombas> Bomba { get => _Bomba; set { _Bomba = value; OnPropertyChanged(); } }
-            private List<ModelosBombas> _Bomba = new List<ModelosBombas>();
+            public ObservableCollection<ModelosBombas> Bomba = new ObservableCollection<ModelosBombas>();
 
             public event PropertyChangedEventHandler? PropertyChanged;
+
             protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
             {
                 this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -727,10 +727,10 @@ namespace Livechart
             DataContext = this;
 
             var instance = Bombas.GetInstance;
-
             ListaDeBombas.DataContext = instance;
             ListaDeBombas.ItemsSource = instance.BombasDisponiveis;
-        }
+      
+                  }
 
         public static double Constante(double N1, double N2, double Vazao, double N4, double Recalque, double Succao)
         {

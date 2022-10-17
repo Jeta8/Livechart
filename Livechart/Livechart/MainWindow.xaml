@@ -76,11 +76,11 @@
                 <RowDefinition Height="41*"/>
                 <RowDefinition Height="393*"/>
             </Grid.RowDefinitions>
-            <ItemsControl ItemsSource="{Binding BombasDisponiveis, Mode=TwoWay}" x:Name="ListaDeBombas" Grid.RowSpan="3">
+            <ItemsControl x:Name="ListaDeBombas" Grid.RowSpan="3">
                 <ItemsControl.ItemTemplate >
                     <DataTemplate>
                         <Grid>
-                            <ListView  Margin="25,100,0,-99" BorderThickness="1.5" BorderBrush="#111" Background="#f6f6f6" VerticalAlignment="Center" HorizontalAlignment="Left" Width="460" Height="100" FontFamily="Lato" MouseMove="ListView_MouseMove">
+                            <ListView DataContext="{Binding Bomba}" x:Name="listViewCBombas" Margin="25,100,0,-99" BorderThickness="1.5" BorderBrush="#111" Background="#f6f6f6" VerticalAlignment="Center" HorizontalAlignment="Left" Width="460" Height="100" FontFamily="Lato" MouseMove="ListView_MouseMove">
                                 <Grid Height="100" Width="330" Margin="5,0"  >
                                     <Image Source="{Binding Imagem}"  Width="100" Height="80" HorizontalAlignment="Left"/>
                                     <TextBlock Text="{Binding NomeMarca}" HorizontalAlignment="Center" Margin="0,12,0,0" FontSize="14" FontWeight="SemiBold" Foreground="DarkBlue"/>
