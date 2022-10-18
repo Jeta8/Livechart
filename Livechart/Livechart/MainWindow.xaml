@@ -6,17 +6,17 @@
          xmlns:local="clr-namespace:Livechart"
                 xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         mc:Ignorable="d"
-        Title="Gráfico" Height="538" Width="600"
+        Title="Gráfico" Height="700" Width="600"
         x:Name="WindowBombas">
 
- <Window.Resources>
+    <Window.Resources>
 
         <ResourceDictionary>
 
             <Style TargetType="Button" x:Key="RoundButton">
                 <Style.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10" />
+                        <Setter Property="CornerRadius" Value="5" />
                         <Setter Property="Background" Value="Orange" />
                     </Style>
                 </Style.Resources>
@@ -26,7 +26,7 @@
                             <Border x:Name="Border"
                                  Background="#079feb"                              
                                  SnapsToDevicePixels="True"
-                                 CornerRadius="10"
+                                 CornerRadius="5"
                                  BorderBrush="#FFFFFF"
                                  BorderThickness="0.2">
                                 <ContentPresenter Name="Presenter" Margin="{TemplateBinding Padding}"
@@ -34,7 +34,7 @@
                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                      RecognizesAccessKey="True"
                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                               
+
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger  Property="Cursor" Value="Hand" SourceName="Border">
@@ -56,13 +56,14 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
         </ResourceDictionary>
     </Window.Resources>
 
 
     <Grid>
 
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -70,37 +71,42 @@
         <Grid x:Name="GridBotao">
             <Button Background="Red" Width="100" Height="50" Click="Exibir_Click">Clique</Button>
         </Grid>
-        
-        <Grid x:Name="GridBombas" Width="500" HorizontalAlignment="Left" Background="#333" Visibility="Hidden">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="41*"/>
-                <RowDefinition Height="393*"/>
-            </Grid.RowDefinitions>
-            <ItemsControl x:Name="ListaDeBombas" Grid.RowSpan="3" ItemsSource="{Binding BombasDisponiveis}">
-                <ItemsControl.ItemTemplate >
-                    <DataTemplate>
-                        <Grid>
-                            <ListView DataContext="{Binding Bomba}" Margin="20,0,0,0" BorderThickness="1.5" BorderBrush="#111" Background="#f6f6f6" VerticalAlignment="Center" HorizontalAlignment="Left" Width="460" Height="100" FontFamily="Lato" MouseMove="ListView_MouseMove">
-                                <Grid Height="100" Width="330" Margin="5,0"  >
-                                    <Image Source="{Binding ImagemBomba}"  Width="100" Height="80" HorizontalAlignment="Left"/>
-                                    <TextBlock Text="{Binding NomeMarca}" HorizontalAlignment="Center" Margin="-42,12,0,0" FontSize="14" FontWeight="SemiBold" Foreground="DarkBlue"/>
-                                    <TextBlock Text="{Binding Modelo}" HorizontalAlignment="Center" Margin="70,12,0,0" FontSize="14" FontWeight="SemiBold" Foreground="DarkBlue"/>
-                                    <TextBlock Text="Potência:" HorizontalAlignment="Center" Margin="0,35,55,0" FontWeight="SemiBold" Foreground="#333"/>
-                                    <TextBlock Text="{Binding Potencia}" HorizontalAlignment="Center" Margin="12,35,-15,0" FontWeight="SemiBold" Foreground="#333"/>
-                                    <TextBlock Text="Vazão de Trabalho:" HorizontalAlignment="Center" Margin="-2,53,1,0" FontWeight="SemiBold" Foreground="#333"/>
-                                    <TextBlock Text="{Binding VazaoTrabalho}" HorizontalAlignment="Center" Margin="0,53,-115,0" FontWeight="SemiBold" Foreground="#333"/>
-                                    <Button x:Name="btnSelecionarBomba" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,3,-90,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="23" Width="150" Click="btnSelecionarBomba_Click">Selecionar este Modelo</Button>
-                                    <Button x:Name="btnManual" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,-3,-90,5" HorizontalAlignment="Right" VerticalAlignment="Center" Height="23" Width="150">Manual</Button>
-                                    <Button x:Name="btnCurvaVazao" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,0,-90,12" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="23" Width="150" Click="btnCurvaVazao_Click">Curva de Vazão</Button>
+        <StackPanel>
+            <Grid x:Name="GridBombas"  Height="550" Margin="30,140" Width="520" HorizontalAlignment="Left" Visibility="Hidden" >
+
+
+                <TextBlock Text="Escolha o Modelo de Bomba do seu Projeto:" HorizontalAlignment="Left" FontWeight="Bold" Margin="0,-125" Foreground="#00034F" FontSize="20" VerticalAlignment="Top" FontFamily="Lato"/>
+                <TextBlock Text="Potência Calculada:" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="0,-85" Foreground="#4A4A4C" FontSize="18" VerticalAlignment="Top" FontFamily="Lato"/>
+                <TextBlock Text="Vazão de Projeto:" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="0,-60" Foreground="#4A4A4C" FontSize="18" VerticalAlignment="Top" FontFamily="Lato"/>
+                <ScrollViewer  VerticalScrollBarVisibility="Auto" >
+                    <ItemsControl x:Name="ListaDeBombas" Grid.RowSpan="3" ItemsSource="{Binding BombasDisponiveis}">
+                        <ItemsControl.ItemTemplate >
+                            <DataTemplate>
+                                <Grid>
+
+                                    <ListView DataContext="{Binding Bomba}" Margin="0,0,0,0" BorderThickness="1.5" BorderBrush="#111" Background="#EAEDF2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="550" Height="100" FontFamily="Lato" MouseMove="ListView_MouseMove">
+                                        <Grid Height="100" Width="330" Margin="5,0"  >
+
+                                            <Image Source="{Binding ImagemBomba}"  Width="100" Height="80" HorizontalAlignment="Left"/>
+                                            <TextBlock Text="{Binding NomeMarca}" HorizontalAlignment="Center" Margin="-32,12,0,0" FontSize="16" FontWeight="SemiBold" Foreground="#00034F"/>
+                                            <TextBlock Text="{Binding Modelo}" HorizontalAlignment="Center" Margin="90,12,0,0" FontSize="16" FontWeight="SemiBold" Foreground="#00034F"/>
+                                            <TextBlock Text="Potência:" HorizontalAlignment="Center" Margin="0,35,45,0" FontSize="14" FontWeight="SemiBold" Foreground="#4A4A4C"/>
+                                            <TextBlock Text="{Binding PotenciaCV}" HorizontalAlignment="Center" Margin="35,37,-15,0" FontSize="12" FontWeight="SemiBold" Foreground="#4A4A4C"/>
+                                            <TextBlock Text="Vazão de Trabalho:" HorizontalAlignment="Center" Margin="2,53,1,0" FontWeight="SemiBold" Foreground="#4A4A4C"/>
+                                            <TextBlock Text="{Binding VazaoTrabalho}" HorizontalAlignment="Center" Margin="0,53,-115,0" FontWeight="SemiBold" Foreground="#4A4A4C"/>
+                                            <Button x:Name="btnSelecionarBomba" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,3,-90,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="23" Width="150" Click="btnSelecionarBomba_Click">Selecionar este Modelo</Button>
+                                            <Button x:Name="btnManual" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,-3,-90,5" HorizontalAlignment="Right" VerticalAlignment="Center" Height="23" Width="150">Manual</Button>
+                                            <Button x:Name="btnCurvaVazao" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,0,-90,12" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="23" Width="150" Click="btnCurvaVazao_Click">Curva de Vazão</Button>
+                                        </Grid>
+                                    </ListView>
                                 </Grid>
-                            </ListView>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Grid>
-        <Grid  x:Name="GridCurva"  Margin="0,39,20,39" Width="750" HorizontalAlignment="Right" Visibility="Hidden" >
-            <lvc:CartesianChart
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+            <Grid  x:Name="GridCurva"  Margin="0,39,20,39" Width="750" HorizontalAlignment="Right" Visibility="Hidden" >
+                <lvc:CartesianChart
              Series="{Binding Series}"
              AnimationsSpeed="00:00:00.500"
              YAxes="{Binding YAxes}"
@@ -114,8 +120,8 @@
              LegendPosition="Bottom" Margin="174,36,0,36" Grid.ColumnSpan="2"
              
              />
-        </Grid>
-
+            </Grid>
+        </StackPanel>
     </Grid>
 
 

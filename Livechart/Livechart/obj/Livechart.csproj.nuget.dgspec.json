@@ -1,33 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\walla\\Desktop\\livechart\\Livechart\\Livechart\\Livechart\\Livechart.csproj": {}
+    "C:\\Users\\PC 01\\Documents\\GitHub\\Livechart\\Livechart\\Livechart\\Livechart.csproj": {}
   },
   "projects": {
-    "C:\\Users\\walla\\Desktop\\livechart\\Livechart\\Livechart\\Livechart\\Livechart.csproj": {
+    "C:\\Users\\PC 01\\Documents\\GitHub\\Livechart\\Livechart\\Livechart\\Livechart.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\walla\\Desktop\\livechart\\Livechart\\Livechart\\Livechart\\Livechart.csproj",
+        "projectUniqueName": "C:\\Users\\PC 01\\Documents\\GitHub\\Livechart\\Livechart\\Livechart\\Livechart.csproj",
         "projectName": "Livechart",
-        "projectPath": "C:\\Users\\walla\\Desktop\\livechart\\Livechart\\Livechart\\Livechart\\Livechart.csproj",
-        "packagesPath": "C:\\Users\\walla\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\walla\\Desktop\\livechart\\Livechart\\Livechart\\Livechart\\obj\\",
+        "projectPath": "C:\\Users\\PC 01\\Documents\\GitHub\\Livechart\\Livechart\\Livechart\\Livechart.csproj",
+        "packagesPath": "C:\\Users\\PC 01\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC 01\\Documents\\GitHub\\Livechart\\Livechart\\Livechart\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\walla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC 01\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0-windows7.0"
+          "net6.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\walla\\Downloads\\AutoUpdater.NET-master (1)\\AutoUpdater.NET-master\\AutoUpdater.NET\\build\\lib\\net45\\publish": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0-windows7.0": {
-            "targetAlias": "net5.0-windows",
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
             "projectReferences": {}
           }
         },
@@ -38,8 +37,8 @@
         }
       },
       "frameworks": {
-        "net5.0-windows7.0": {
-          "targetAlias": "net5.0-windows",
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
           "dependencies": {
             "LiveCharts.Wpf": {
               "target": "Package",
@@ -56,7 +55,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -68,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
