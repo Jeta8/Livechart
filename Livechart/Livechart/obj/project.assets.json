@@ -796,19 +796,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC 01\\.nuget\\packages\\": {}
+    "C:\\Users\\muril\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC 01\\Documents\\GitHub\\Livechart\\Livechart\\Livechart\\Livechart.csproj",
+      "projectUniqueName": "C:\\Users\\muril\\OneDrive\\Documents\\GitHub\\Livechart\\Livechart\\Livechart\\Livechart.csproj",
       "projectName": "Livechart",
-      "projectPath": "C:\\Users\\PC 01\\Documents\\GitHub\\Livechart\\Livechart\\Livechart\\Livechart.csproj",
-      "packagesPath": "C:\\Users\\PC 01\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC 01\\Documents\\GitHub\\Livechart\\Livechart\\Livechart\\obj\\",
+      "projectPath": "C:\\Users\\muril\\OneDrive\\Documents\\GitHub\\Livechart\\Livechart\\Livechart\\Livechart.csproj",
+      "packagesPath": "C:\\Users\\muril\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\muril\\OneDrive\\Documents\\GitHub\\Livechart\\Livechart\\Livechart\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PC 01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\muril\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -862,7 +862,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   },
