@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using LiveCharts;
+using LiveCharts.Defaults;
 using LiveChartsCore;
+using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.Defaults;
-using LiveCharts;
-using System.Windows.Media.Animation;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
-using LiveCharts.Configurations;
-using LiveChartsCore.Geo;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using LiveChartsCore.Kernel.Sketches;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Security.Cryptography.X509Certificates;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Windows;
 using System.Windows.Media.Imaging;
-using System.Windows.Controls;
 using static Livechart.Bombas;
 
 namespace Livechart
@@ -28,28 +22,21 @@ namespace Livechart
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
-    public class Bombas
+    public partial class Bombas
     {
-        private static readonly Bombas _instance = new Bombas();
-        public static Bombas GetInstance
+        public static ObservableCollection<cBombas> BombasDisponiveis { get; set; }
+        public Bombas()
         {
-            get
-            {
-                return _instance;
-            }
-        }
-        public ObservableCollection<cBombas> BombasDisponiveis = new ObservableCollection<cBombas>();
-        private Bombas()
-        {
-            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider" });
-            BombasDisponiveis.First().Bomba.Add(new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri(@"C:\Users\muril\OneDrive\Projetos Integrados\2 - Union Revit\B - Famílias Limpas\RVT - 2019\1 - Hidrossanitário\4 - Equipamentos Mecânicos\Jederson\Inteligent ROWA\Inteligent 20-24 curva.BMP", UriKind.Absolute)) });           
-        
-            
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-91.bmp", UriKind.Absolute)) } });
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 3, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-91.bmp", UriKind.Absolute)) } });
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 4, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-91.bmp", UriKind.Absolute)) } });
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 5, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-91.bmp", UriKind.Absolute)) } });
-            //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 6, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-91.bmp", UriKind.Absolute)) } });
+            BombasDisponiveis = new ObservableCollection<cBombas>();
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri(@"C:\Users\walla\OneDrive\Trabalho\UnMEP\UnMEP\Resources\icon.png", UriKind.Absolute)) } });
+
+
+
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri(@"C:\Users\walla\OneDrive\Trabalho\UnMEP\UnMEP\Resources\icon.png", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 3, ImagemBomba = new BitmapImage(new Uri(@"C:\Users\walla\OneDrive\Trabalho\UnMEP\UnMEP\Resources\icon.png", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 4, ImagemBomba = new BitmapImage(new Uri(@"C:\Users\walla\OneDrive\Trabalho\UnMEP\UnMEP\Resources\icon.png", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 5, ImagemBomba = new BitmapImage(new Uri(@"C:\Users\walla\OneDrive\Trabalho\UnMEP\UnMEP\Resources\icon.png", UriKind.Absolute)) } });
+            BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-91", ID = 1, IDModelo = 6, ImagemBomba = new BitmapImage(new Uri(@"C:\Users\walla\OneDrive\Trabalho\UnMEP\UnMEP\Resources\icon.png", UriKind.Absolute)) } });
 
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-92", ID = 2, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-92.bmp", UriKind.Absolute)) } });
@@ -72,7 +59,7 @@ namespace Livechart
 
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-98", ID = 3, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-98.bmp", UriKind.Absolute)) } });
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BC-98", ID = 3, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BC-98.bmp", UriKind.Absolute)) } });
-          
+
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4, Submersivel = true, IDModelo = 1, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4, Submersivel = true, IDModelo = 2, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
             //BombasDisponiveis.Add(new cBombas { NomeMarca = "Schneider", Bomba = new ModelosBombas { Modelo = "BCS-255-355", ID = 4, Submersivel = true, IDModelo = 3, ImagemBomba = new BitmapImage(new Uri("pack://application:,,,/UnMEP;component/Resources/Bombas/BCS-255-355.bmp", UriKind.Absolute)) } });
@@ -182,7 +169,7 @@ namespace Livechart
 
         }
 
-        
+
         public static double RFormula(int ID, int IDModelo, double VazaoProjeto = 0)
         {
             double Resultado = 0;
@@ -505,18 +492,21 @@ namespace Livechart
 
             public string Modelo { get => _Modelo; set { _Modelo = value; } }
             private string _Modelo;
+            public string NomeMarca { get => _NomeMarca; set { _NomeMarca = value; } }
+            private string _NomeMarca;
 
             public BitmapImage ImagemBomba { get => _ImagemBomba; set { _ImagemBomba = value; } }
             private BitmapImage _ImagemBomba;
 
             public bool Submersivel { get; set; }
         }
-        public class cBombas: INotifyPropertyChanged
+        public class cBombas : INotifyPropertyChanged
         {
-            public string NomeMarca { get => _NomeMarca; set { _NomeMarca = value; } }
+            public string NomeMarca { get => _NomeMarca; set { _NomeMarca = value; OnPropertyChanged("_NomeMarca"); } }
             private string _NomeMarca;
 
-            public ObservableCollection<ModelosBombas> Bomba = new ObservableCollection<ModelosBombas>();
+            public ModelosBombas Bomba { get => _Bomba; set { _Bomba = value; _Bomba.NomeMarca = NomeMarca; OnPropertyChanged(); } }
+            private ModelosBombas _Bomba;
 
             public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -552,7 +542,7 @@ namespace Livechart
 
     public partial class MainWindow : Window
     {
-        public cBombas BombaSelecionada;
+        public ModelosBombas BombaSelecionada;
         public static ObservablePoint[] Lista;
         public static ChartValues<PontosGrafico> PontosX = new ChartValues<PontosGrafico>(), PontosY = new ChartValues<PontosGrafico>(), PontoInter = new ChartValues<PontosGrafico>(), PontoDeVazao = new ChartValues<PontosGrafico>();
         public ISeries[] Series { get; set; } =
@@ -648,12 +638,12 @@ namespace Livechart
             var ponto3 = new PontosGrafico() { X = 2, Y = Constante(3, 2, 3 + 2, 32, 0.5, 40), label = "" };
             PontoDeVazao.Add(ponto3);
 
-            //for (double x = 0; x < 10; x += 0.001)
-            //{
-            //    var ponto = new PontosGrafico() { X = x, Y = RFormula(IDBomba, ModeloBomba, x), label = "" };
-            //    if (ponto.Y > 0)
-            //        PontosX.Add(ponto);
-            //}
+            for (double x = 0; x < 10; x += 0.001)
+            {
+                var ponto = new PontosGrafico() { X = x, Y = RFormula(IDBomba, ModeloBomba, x), label = "" };
+                if (ponto.Y > 0)
+                    PontosX.Add(ponto);
+            }
             for (double y = 0; y < 10; y += 0.001)
             {
                 double valor = Constante(3, 2, 3 + y, 32, 0.5, 40);
@@ -679,7 +669,7 @@ namespace Livechart
                 }
             }
         }
-       
+
 
         private void btnCurvaVazao_Click(object sender, RoutedEventArgs e)
         {
@@ -688,7 +678,7 @@ namespace Livechart
             {
                 try
                 {
-                    FuncaoCalculoCurvaGrafico(BombaSelecionada.Bomba.First().ID, BombaSelecionada.Bomba.First().IDModelo);
+                    FuncaoCalculoCurvaGrafico(BombaSelecionada.ID, BombaSelecionada.IDModelo);
                     this.Width = 1120;
                     GridCurva.Visibility = Visibility.Visible;
                 }
@@ -720,16 +710,13 @@ namespace Livechart
             GridBotao.Visibility = Visibility.Visible;
             GridBombas.Visibility = Visibility.Hidden;
         }
-   
+
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
 
-            var instance = Bombas.GetInstance;
-            ListaDeBombas.DataContext = instance;
-            ListaDeBombas.ItemsSource = instance.BombasDisponiveis;
-      
+            ListaDeBombas.DataContext = new Bombas();
         }
 
         public static double Constante(double N1, double N2, double Vazao, double N4, double Recalque, double Succao)
