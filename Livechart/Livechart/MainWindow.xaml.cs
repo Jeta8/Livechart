@@ -516,15 +516,12 @@ namespace Livechart
             }
         }
     }
-
     public class PontosGrafico : INotifyPropertyChanged
     {
         public string label { get => _label; set { _label = value; OnPropertyChanged(); } }
         private string _label = "";
-
         public double X { get => _X; set { _X = value; OnPropertyChanged(); } }
         private double _X;
-
         public double Y { get => _Y; set { _Y = value; OnPropertyChanged(); } }
         private double _Y;
         public double PCritico { get => _PCritico; set { _PCritico = value; OnPropertyChanged(); } }
@@ -550,12 +547,14 @@ namespace Livechart
 
         new LineSeries<PontosGrafico>
         {
-            Name = "Bomba",
+            Name = "Bomba (Hm)",
             Values = PontosX,
             GeometryFill=null,
             GeometryStroke=null,
             Fill = null,
-            ScalesYAt = 0,
+             TooltipLabelFormatter =
+        (chartPoint) => $"{chartPoint.Context.Series.Name}: {chartPoint.SecondaryValue:N2} mca",
+            ScalesXAt = 0,
             Stroke= new SolidColorPaint(new SKColor(0,0,139),4),
             Mapping = (city, point) =>
         {
@@ -569,7 +568,9 @@ namespace Livechart
             Fill = null,
             GeometryFill=null,
             GeometryStroke=null,
-            ScalesYAt= 0,
+            ScalesXAt= 0,
+               TooltipLabelFormatter =
+        (chartPoint) => $"{chartPoint.Context.Series.Name}: {chartPoint.SecondaryValue:N2}",
             Stroke= new SolidColorPaint(new SKColor(230, 129, 0),4),
             Values = PontosY,
                Mapping = (city, point) =>
@@ -596,7 +597,7 @@ namespace Livechart
             Name = "Vazão Projeto",
             Fill = null,
             GeometrySize=10,
-            GeometryStroke=new SolidColorPaint(new SKColor(0, 0, 0),3),
+            GeometryStroke=new SolidColorPaint(new SKColor(180,130, 0),3),
             Values = PontoDeVazao,
                Mapping = (city, point) =>
         {
@@ -609,7 +610,7 @@ namespace Livechart
         {
                 new Axis
         {
-            Name = "Altura Manométrica",
+            Name = "Altura Manométrica (hm)",
             NameTextSize = 14,
             NamePaint = new SolidColorPaint(new SKColor(0,0,0)),
             TextSize = 12,
@@ -669,11 +670,8 @@ namespace Livechart
                 }
             }
         }
-
-
         private void btnCurvaVazao_Click(object sender, RoutedEventArgs e)
         {
-
             if (BombaSelecionada != null)
             {
                 try
@@ -708,7 +706,6 @@ namespace Livechart
             BarraScroll.ScrollToVerticalOffset(e.Delta > 0 ? BarraScroll.VerticalOffset - 15 : BarraScroll.VerticalOffset + 15);
         }
 
-
         private void btnSelecionarBomba_Click(object sender, RoutedEventArgs e)
         {
             this.Width = 600;
@@ -721,7 +718,6 @@ namespace Livechart
         {
             InitializeComponent();
             DataContext = this;
-
             ListaDeBombas.DataContext = new Bombas();
         }
 
