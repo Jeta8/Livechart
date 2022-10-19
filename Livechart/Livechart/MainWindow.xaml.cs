@@ -679,7 +679,7 @@ namespace Livechart
                 try
                 {
                     FuncaoCalculoCurvaGrafico(BombaSelecionada.ID, BombaSelecionada.IDModelo);
-                    this.Width = 1120;
+                    this.Width = 1200;
                     GridCurva.Visibility = Visibility.Visible;
                 }
                 catch (Exception)
@@ -702,6 +702,12 @@ namespace Livechart
             GridBotao.Visibility = Visibility.Hidden;
             GridBombas.Visibility = Visibility.Visible;
         }
+
+        private void BarraScroll_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            BarraScroll.ScrollToVerticalOffset(e.Delta > 0 ? BarraScroll.VerticalOffset - 15 : BarraScroll.VerticalOffset + 15);
+        }
+
 
         private void btnSelecionarBomba_Click(object sender, RoutedEventArgs e)
         {

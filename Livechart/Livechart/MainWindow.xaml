@@ -6,7 +6,7 @@
          xmlns:local="clr-namespace:Livechart"
                 xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         mc:Ignorable="d"
-        Title="Gráfico" Height="700" Width="600"
+        Title="Gráfico" Height="740" Width="600"
         x:Name="WindowBombas">
 
     <Window.Resources>
@@ -78,22 +78,22 @@
                 <TextBlock Text="Escolha o Modelo de Bomba do seu Projeto:" HorizontalAlignment="Left" FontWeight="Bold" Margin="0,-125" Foreground="#00034F" FontSize="20" VerticalAlignment="Top" FontFamily="Lato"/>
                 <TextBlock Text="Potência Calculada:" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="0,-85" Foreground="#4A4A4C" FontSize="18" VerticalAlignment="Top" FontFamily="Lato"/>
                 <TextBlock Text="Vazão de Projeto:" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="0,-60" Foreground="#4A4A4C" FontSize="18" VerticalAlignment="Top" FontFamily="Lato"/>
-                <ScrollViewer  VerticalScrollBarVisibility="Auto" >
+                <ScrollViewer x:Name="BarraScroll" VerticalScrollBarVisibility="Auto" >
                     <ItemsControl x:Name="ListaDeBombas" Grid.RowSpan="3" ItemsSource="{Binding BombasDisponiveis}">
                         <ItemsControl.ItemTemplate >
                             <DataTemplate>
                                 <Grid>
 
-                                    <ListView DataContext="{Binding Bomba}" Margin="0,0,0,0" BorderThickness="1.5" BorderBrush="#111" Background="#EAEDF2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="550" Height="100" FontFamily="Lato" MouseMove="ListView_MouseMove">
-                                        <Grid Height="100" Width="330" Margin="5,0"  >
+                                    <ListView MouseWheel="BarraScroll_MouseWheel" DataContext="{Binding Bomba}" Margin="0,0,0,0" BorderThickness="1.5" BorderBrush="#111" Background="#EAEDF2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="550" Height="100" FontFamily="Lato" MouseMove="ListView_MouseMove">
+                                        <Grid Height="100" Width="330" Margin="5,0" MouseWheel="BarraScroll_MouseWheel" >
 
                                             <Image Source="{Binding ImagemBomba}"  Width="100" Height="80" HorizontalAlignment="Left"/>
-                                            <TextBlock Text="{Binding NomeMarca}" HorizontalAlignment="Center" Margin="-32,12,0,0" FontSize="16" FontWeight="SemiBold" Foreground="#00034F"/>
-                                            <TextBlock Text="{Binding Modelo}" HorizontalAlignment="Center" Margin="90,12,0,0" FontSize="16" FontWeight="SemiBold" Foreground="#00034F"/>
-                                            <TextBlock Text="Potência:" HorizontalAlignment="Center" Margin="0,35,45,0" FontSize="14" FontWeight="SemiBold" Foreground="#4A4A4C"/>
-                                            <TextBlock Text="{Binding PotenciaCV}" HorizontalAlignment="Center" Margin="35,37,-15,0" FontSize="12" FontWeight="SemiBold" Foreground="#4A4A4C"/>
-                                            <TextBlock Text="Vazão de Trabalho:" HorizontalAlignment="Center" Margin="2,53,1,0" FontWeight="SemiBold" Foreground="#4A4A4C"/>
-                                            <TextBlock Text="{Binding VazaoTrabalho}" HorizontalAlignment="Center" Margin="0,53,-115,0" FontWeight="SemiBold" Foreground="#4A4A4C"/>
+                                            <TextBlock Text="{Binding NomeMarca}" HorizontalAlignment="Center" Width="80" Margin="0,12,0,0" FontSize="16" FontWeight="SemiBold" Foreground="#00034F"/>
+                                            <TextBlock Text="{Binding Modelo}" HorizontalAlignment="Center" Width="50" Margin="120,12,0,0" FontSize="16" FontWeight="SemiBold" Foreground="#00034F"/>
+                                            <TextBlock Text="Potência:" HorizontalAlignment="Center" Width="70" Margin="35,35,45,0" FontSize="14" FontWeight="SemiBold" Foreground="#4A4A4C"/>
+                                            <TextBlock Text="{Binding PotenciaCV}" HorizontalAlignment="Center" Width="80" Margin="105,37,-15,0" FontSize="12" FontWeight="SemiBold" Foreground="#4A4A4C"/>
+                                            <TextBlock Text="Vazão de Trabalho:" HorizontalAlignment="Center"  Width="115" Margin="38,53,1,0" FontWeight="SemiBold" Foreground="#4A4A4C"/>
+                                            <TextBlock Text="{Binding VazaoTrabalho}" HorizontalAlignment="Center"  Width="50" Margin="70,53,-115,0" FontWeight="SemiBold" Foreground="#4A4A4C"/>
                                             <Button x:Name="btnSelecionarBomba" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,3,-90,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="23" Width="150" Click="btnSelecionarBomba_Click">Selecionar este Modelo</Button>
                                             <Button x:Name="btnManual" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,-3,-90,5" HorizontalAlignment="Right" VerticalAlignment="Center" Height="23" Width="150">Manual</Button>
                                             <Button x:Name="btnCurvaVazao" Style="{StaticResource RoundButton}" Foreground="White" Background="#21acfc" Margin="0,0,-90,12" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="23" Width="150" Click="btnCurvaVazao_Click">Curva de Vazão</Button>
@@ -105,7 +105,9 @@
                     </ItemsControl>
                 </ScrollViewer>
             </Grid>
-            <Grid  x:Name="GridCurva"  Margin="0,39,20,39" Width="750" HorizontalAlignment="Right" Visibility="Hidden" >
+        </StackPanel>
+
+        <Grid  x:Name="GridCurva"  Margin="0,39,20,39" Width="750" HorizontalAlignment="Right" Visibility="Hidden" >
                 <lvc:CartesianChart
              Series="{Binding Series}"
              AnimationsSpeed="00:00:00.500"
@@ -121,7 +123,7 @@
              
              />
             </Grid>
-        </StackPanel>
+     
     </Grid>
 
 
