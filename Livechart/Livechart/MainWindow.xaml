@@ -7,6 +7,7 @@
                 xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         mc:Ignorable="d"
         Title="Gráfico" Height="740" Width="600"
+        ResizeMode="NoResize"
         x:Name="WindowBombas">
 
     <Window.Resources>
