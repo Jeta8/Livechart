@@ -10,11 +10,34 @@
 
   <ItemGroup>
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
-    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.401" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LiveChartsCore">
+      <HintPath>..\..\..\LiveChartsCore\LiveCharts2\src\LiveChartsCore\bin\Debug\net6.0\LiveChartsCore.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveChartsCore.SkiaSharpView">
+      <HintPath>..\..\..\LiveChartsCore\LiveCharts2\src\skiasharp\LiveChartsCore.SkiaSharp.WPF\bin\Debug\net462\LiveChartsCore.SkiaSharpView.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveChartsCore.SkiaSharpView.WPF">
+      <HintPath>..\..\..\LiveChartsCore\LiveCharts2\src\skiasharp\LiveChartsCore.SkiaSharp.WPF\bin\Debug\net462\LiveChartsCore.SkiaSharpView.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp">
+      <HintPath>..\..\..\LiveChartsCore\LiveCharts2\src\skiasharp\LiveChartsCore.SkiaSharp.WPF\bin\Debug\net462\SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.HarfBuzz">
+      <HintPath>..\..\..\LiveChartsCore\LiveCharts2\src\skiasharp\LiveChartsCore.SkiaSharp.WPF\bin\Debug\net462\SkiaSharp.HarfBuzz.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Desktop.Common">
+      <HintPath>..\..\..\LiveChartsCore\LiveCharts2\src\skiasharp\LiveChartsCore.SkiaSharp.WPF\bin\Debug\net462\SkiaSharp.Views.Desktop.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.WPF">
+      <HintPath>..\..\..\LiveChartsCore\LiveCharts2\src\skiasharp\LiveChartsCore.SkiaSharp.WPF\bin\Debug\net462\SkiaSharp.Views.WPF.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

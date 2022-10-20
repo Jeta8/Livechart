@@ -119,7 +119,9 @@
              XAxes="{Binding XAxes}"
              TooltipFontFamily="Lato"
              FontFamily="Lato"
-             ZoomMode="X"
+             
+             
+             TooltipFindingStrategy="CompareAllTakeClosest"
              LegendPosition="Bottom" Margin="174,36,0,36" Grid.ColumnSpan="2"
              
              />

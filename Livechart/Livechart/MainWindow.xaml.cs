@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Defaults;
 using LiveChartsCore;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -547,13 +548,13 @@ namespace Livechart
 
         new LineSeries<PontosGrafico>
         {
-            Name = "Bomba (Hm)",
+            Name = "Bomba\n",
             Values = PontosX,
             GeometryFill=null,
             GeometryStroke=null,
             Fill = null,
              TooltipLabelFormatter =
-        (chartPoint) => $"{chartPoint.Context.Series.Name}: {chartPoint.SecondaryValue:N2} mca",
+        (chartPoint) => $"{chartPoint.Context.Series.Name}Hm = {chartPoint.PrimaryValue:N2} mca\n" + " Q   = " + chartPoint.SecondaryValue.ToString("N2") + " m³/h",
             ScalesXAt = 0,
             Stroke= new SolidColorPaint(new SKColor(0,0,139),4),
             Mapping = (city, point) =>
@@ -564,13 +565,13 @@ namespace Livechart
         },
          new LineSeries<PontosGrafico>
         {
-            Name = "Sistema",
+            Name = "Sistema\n",
             Fill = null,
             GeometryFill=null,
             GeometryStroke=null,
             ScalesXAt= 0,
-               TooltipLabelFormatter =
-        (chartPoint) => $"{chartPoint.Context.Series.Name}: {chartPoint.SecondaryValue:N2}",
+             TooltipLabelFormatter =
+        (chartPoint) => $"{chartPoint.Context.Series.Name}Hm = {chartPoint.PrimaryValue:N2} mca\n" + " Q   = " + chartPoint.SecondaryValue.ToString("N2") + " m³/h" ,
             Stroke= new SolidColorPaint(new SKColor(230, 129, 0),4),
             Values = PontosY,
                Mapping = (city, point) =>
@@ -581,9 +582,11 @@ namespace Livechart
         }
         },
            new LineSeries<PontosGrafico>
-        {   Name = "Ponto de Interseção",
+        {   Name = "Ponto de Interseção\n",
             Fill = null,
             GeometrySize=10,
+             TooltipLabelFormatter =
+        (chartPoint) => $"{chartPoint.Context.Series.Name}Hm = {chartPoint.PrimaryValue:N2} mca\n" + " Q   = " + chartPoint.SecondaryValue.ToString("N2") + " m³/h" ,
             GeometryStroke=new SolidColorPaint(new SKColor(0,0,0),3),
             Values = PontoInter,
                Mapping = (city, point) =>
@@ -610,7 +613,7 @@ namespace Livechart
         {
                 new Axis
         {
-            Name = "Altura Manométrica (hm)",
+            Name = "Altura Manométrica (Hm)",
             NameTextSize = 14,
             NamePaint = new SolidColorPaint(new SKColor(0,0,0)),
             TextSize = 12,
