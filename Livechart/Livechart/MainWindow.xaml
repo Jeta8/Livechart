@@ -109,7 +109,7 @@
         </StackPanel>
 
         <Grid  x:Name="GridCurva"  Margin="0,39,20,39" Width="750" HorizontalAlignment="Right" Visibility="Hidden" >
-                <lvc:CartesianChart
+            <lvc:CartesianChart
              Series="{Binding Series}"
              AnimationsSpeed="00:00:00.500"
              YAxes="{Binding YAxes}"
@@ -118,13 +118,14 @@
              LegendTextBrush="#505050"
              XAxes="{Binding XAxes}"
              TooltipFontFamily="Lato"
-             FontFamily="Lato"
-             
+             FontFamily="Lato"        
              
              TooltipFindingStrategy="CompareAllTakeClosest"
              LegendPosition="Bottom" Margin="174,36,0,36" Grid.ColumnSpan="2"
-             
-             />
+                    
+
+                />
+            
             </Grid>
      
     </Grid>

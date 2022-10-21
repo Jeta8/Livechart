@@ -548,11 +548,11 @@ namespace Livechart
 
         new LineSeries<PontosGrafico>
         {
-            Name = "Bomba\n",
+            Name = "Bomba\n", 
             Values = PontosX,
             GeometryFill=null,
             GeometryStroke=null,
-            Fill = null,
+            Fill =  null,
              TooltipLabelFormatter =
         (chartPoint) => $"{chartPoint.Context.Series.Name}Hm = {chartPoint.PrimaryValue:N2} mca\n" + " Q   = " + chartPoint.SecondaryValue.ToString("N2") + " m³/h",
             ScalesXAt = 0,
@@ -673,6 +673,7 @@ namespace Livechart
                 }
             }
         }
+
         private void btnCurvaVazao_Click(object sender, RoutedEventArgs e)
         {
             if (BombaSelecionada != null)
